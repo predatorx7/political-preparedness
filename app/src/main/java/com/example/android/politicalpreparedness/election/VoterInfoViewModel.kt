@@ -36,15 +36,14 @@ class VoterInfoViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun getVoterInfo(electionId: Int, address: String) =
-            viewModelScope.launch {
-                electionsRepository.getVoterInfo(electionId, address)
-            }
+        viewModelScope.launch {
+            electionsRepository.getVoterInfo(electionId, address)
+        }
 
 
     fun intentUrl(url: String) {
         Url.value = url
     }
-
 
 
 }

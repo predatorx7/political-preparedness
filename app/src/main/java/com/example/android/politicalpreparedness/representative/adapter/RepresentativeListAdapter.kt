@@ -91,7 +91,7 @@ class RepresentativeViewHolder(val binding: RepresentativeItemBinding) : Recycle
 
 }
 
-: Create RepresentativeDiffCallback
+// Create RepresentativeDiffCallback
 
 class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
     override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {

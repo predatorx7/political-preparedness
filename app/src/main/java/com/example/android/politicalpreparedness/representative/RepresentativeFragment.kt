@@ -142,7 +142,7 @@ class RepresentativeFragment : Fragment() {
         locationClient.lastLocation
                 .addOnSuccessListener { location ->
                     if (location != null) {
-: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
+                    // The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
                         val address = geoCodeLocation(location)
                         viewModel.address.value = address
 

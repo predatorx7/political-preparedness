@@ -60,12 +60,11 @@
             android:layout_height="wrap_content"
             android:onClick="@{()->viewModel.intentUrl(viewModel.voterInfo.state[0].electionAdministrationBody.votingLocationFinderUrl)}"
             android:text="Voting Location"
-            android:visibility='@{TextUtils.isEmpty(viewModel.voterInfo.state[0].electionAdministrationBody.votingLocationFinderUrl) ? View.GONE : View.VISIBLE}'
-            app:layout_constraintStart_toStartOf="@id/election_date"
-            app:layout_constraintTop_toBottomOf="@id/state_header"
             android:textColor="@android:color/holo_blue_dark"
             android:textStyle="bold"
-            />
+            android:visibility='@{TextUtils.isEmpty(viewModel.voterInfo.state[0].electionAdministrationBody.votingLocationFinderUrl) ? View.GONE : View.VISIBLE}'
+            app:layout_constraintStart_toStartOf="@id/election_date"
+            app:layout_constraintTop_toBottomOf="@id/state_header" />
 
         <TextView
             android:id="@+id/state_ballot"
@@ -73,11 +72,11 @@
             android:layout_height="wrap_content"
             android:onClick="@{()->viewModel.intentUrl(viewModel.voterInfo.state[0].electionAdministrationBody.electionInfoUrl)}"
             android:text="Ballot Information"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
             android:visibility='@{TextUtils.isEmpty(viewModel.voterInfo.state[0].electionAdministrationBody.electionInfoUrl) ? View.GONE : View.VISIBLE}'
             app:layout_constraintStart_toStartOf="@id/election_date"
-            app:layout_constraintTop_toBottomOf="@id/state_locations"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold" />
+            app:layout_constraintTop_toBottomOf="@id/state_locations" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/address_group"

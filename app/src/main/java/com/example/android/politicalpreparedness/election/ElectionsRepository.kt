@@ -10,13 +10,12 @@ import com.example.android.politicalpreparedness.network.models.RepresentativeRe
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class ElectionsRepository(private val database: ElectionDatabase) {
 
     val elections: LiveData<List<Election>> = database.electionDao.getAllElections()
-    val voterInfo =  MutableLiveData<VoterInfoResponse>()
-    val representatives =  MutableLiveData<RepresentativeResponse>()
+    val voterInfo = MutableLiveData<VoterInfoResponse>()
+    val representatives = MutableLiveData<RepresentativeResponse>()
 
 
     fun getElection(id: Int) = database.electionDao.getElectionById(id)
@@ -24,7 +23,8 @@ class ElectionsRepository(private val database: ElectionDatabase) {
     suspend fun getVoterInfo(electionId: Int, address: String) {
         try {
             withContext(Dispatchers.IO) {
-                val response = CivicsApi.retrofitService.getVoterInfoAsync(electionId, address).await()
+                val response =
+                    CivicsApi.retrofitService.getVoterInfoAsync(electionId, address).await()
                 voterInfo.postValue(response)
             }
         } catch (e: Exception) {

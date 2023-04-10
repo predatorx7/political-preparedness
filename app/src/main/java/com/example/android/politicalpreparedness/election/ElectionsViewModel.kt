@@ -1,10 +1,9 @@
 package com.example.android.politicalpreparedness.election
 
 import android.app.Application
-import androidx.lifecycle.*
-import androidx.navigation.Navigation.findNavController
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.politicalpreparedness.database.ElectionDatabase.Companion.getInstance
-import com.example.android.politicalpreparedness.network.models.Election
 import kotlinx.coroutines.launch
 
 class ElectionsViewModel(application: Application) : AndroidViewModel(application) {

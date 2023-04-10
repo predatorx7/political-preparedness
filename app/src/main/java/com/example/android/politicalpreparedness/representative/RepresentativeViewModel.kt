@@ -20,11 +20,21 @@ class RepresentativeViewModel(application: Application) : AndroidViewModel(appli
         if (address.value != null) {
             viewModelScope.launch {
                 try {
-                    val (offices, officials) = CivicsApi.retrofitService.getRepresentativesAsync(address.value!!.toFormattedString()).await()
-                    representatives.postValue(offices.flatMap { office -> office.getRepresentatives(officials) })
+                    val (offices, officials) = CivicsApi.retrofitService.getRepresentativesAsync(
+                        address.value!!.toFormattedString()
+                    ).await()
+                    representatives.postValue(offices.flatMap { office ->
+                        office.getRepresentatives(
+                            officials
+                        )
+                    })
                 } catch (e: Throwable) {
                     e.printStackTrace()
-                    val toast = Toast.makeText(getApplication<Application>().applicationContext!!, "Failed to get results", Toast.LENGTH_SHORT)
+                    val toast = Toast.makeText(
+                        getApplication<Application>().applicationContext!!,
+                        "Failed to get results",
+                        Toast.LENGTH_SHORT
+                    )
                     toast.show()
                 }
             }
