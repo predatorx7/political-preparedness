@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
@@ -30,6 +30,7 @@ class RepresentativeFragment : Fragment() {
 
     companion object {
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
+        private const val LIST_STATE_KEY = "LIST_STATE_KEY"
     }
 
     private val viewModel: RepresentativeViewModel by lazy {
@@ -83,10 +84,32 @@ class RepresentativeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel.representatives.observe(viewLifecycleOwner, Observer { representatives ->
             representativeAdapter.submitList(representatives)
-
         })
     }
 
+    var mListState: Parcelable? = null
+
+    override fun onResume() {
+        super.onResume()
+        if (mListState != null) {
+            val mLayoutManager = binding.representativesRecyclerView.layoutManager;
+            mLayoutManager?.onRestoreInstanceState(mListState);
+        }
+    }
+
+    override fun onSaveInstanceState(state: Bundle) {
+        super.onSaveInstanceState(state)
+        val mLayoutManager = binding.representativesRecyclerView.layoutManager;
+        // Save list state
+        mListState = mLayoutManager?.onSaveInstanceState()
+        state.putParcelable(LIST_STATE_KEY, mListState)
+    }
+
+    override fun onViewStateRestored(state: Bundle?) {
+        super.onViewStateRestored(state)
+        // Retrieve list state and list/item positions
+        if (state != null) mListState = state.getParcelable(LIST_STATE_KEY)
+    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
