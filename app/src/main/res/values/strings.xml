@@ -13,5 +13,11 @@
     <string name="representatives">Representatives</string>
     <string name="search">search</string>
     <string name="follow_election">Follow Election</string>
+    <string name="saved_elections">Saved Elections</string>
+    <string name="search_representative">Search Representative</string>
+    <string name="address_line_1">address line 1</string>
+    <string name="address_line_2">address line 2</string>
+    <string name="city">city</string>
+    <string name="zip">zip</string>
 
 </resources>
