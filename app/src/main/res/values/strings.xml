@@ -19,5 +19,11 @@
     <string name="address_line_2">address line 2</string>
     <string name="city">city</string>
     <string name="zip">zip</string>
+    <string name="election_date">Election Date</string>
+    <string name="election_name">Election Name</string>
+    <string name="election_information">Election Information</string>
+    <string name="voting_location">Voting Location</string>
+    <string name="ballot_information">Ballot Information</string>
+    <string name="corresponding_address">Corresponding address</string>
 
 </resources>
