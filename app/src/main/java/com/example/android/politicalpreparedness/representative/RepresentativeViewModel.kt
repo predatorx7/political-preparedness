@@ -11,19 +11,17 @@ import kotlinx.coroutines.launch
 
 class RepresentativeViewModel(application: Application) : AndroidViewModel(application) {
 
-    var scrollState: Int = 0
-
     // Establish live data for representatives and address
     val representatives: MutableLiveData<List<Representative>> = MutableLiveData()
     val address = MutableLiveData<Address>()
 
     // Create function to fetch representatives from API from a provided address
     fun getRepresentatives() {
-        if (address.value != null) {
+        if (this.address.value != null) {
             viewModelScope.launch {
                 try {
                     val (offices, officials) = CivicsApi.retrofitService.getRepresentativesAsync(
-                        address.value!!.toFormattedString()
+                        this@RepresentativeViewModel.address.value!!.toFormattedString()
                     ).await()
                     representatives.postValue(offices.flatMap { office ->
                         office.getRepresentatives(

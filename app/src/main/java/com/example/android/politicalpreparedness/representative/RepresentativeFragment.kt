@@ -56,8 +56,10 @@ class RepresentativeFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.address = Address("", "", "", "", "")
 
+        val address = Address("", "", "", "", "");
+        binding.address = address
+        viewModel.address.value = address;
 
         val states = resources.getStringArray(R.array.states)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, states)
